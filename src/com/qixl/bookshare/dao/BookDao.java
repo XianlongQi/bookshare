@@ -10,6 +10,7 @@ import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 import com.qixl.bookshare.exception.DBException;
 import com.qixl.bookshare.model.Book;
+import com.qixl.bookshare.model.BookStatus;
 import com.qixl.bookshare.model.Pagenation;
 import com.qixl.bookshare.util.DBUtils;
 import com.qixl.common.JDBCCallBack;
@@ -73,13 +74,13 @@ public class BookDao {
     }
 
     // 查询书籍
-    public ArrayList<Book> query(int userId, Pagenation pagenation,String status) {
+    public ArrayList<Book> query(int userId, Pagenation pagenation,BookStatus status) {
         
         pagenation.setTotalCount(this.getMyBookCount(userId,status));     
         if (pagenation.getCurretnPage() > pagenation.getPageCount()) {    
             pagenation.setCurretnPage(pagenation.getCurretnPage());       
         }                       
-        String sql ="SELECT * FROM book WHERE "+this.getWhereSQL(userId, status)+" ORDER BY updated_time DESC LIMIT "+ pagenation.getOffset() + "," + pagenation.getPageSize() + ";";
+        String sql ="SELECT * FROM book WHERE "+this.getWhereSQL(userId, status.getValue())+" ORDER BY updated_time DESC LIMIT "+ pagenation.getOffset() + "," + pagenation.getPageSize() + ";";
         JDBCTemplate<Book> jdbcTemplate = new JDBCTemplate<Book>();
         ArrayList<Book> bookList  = jdbcTemplate.query(sql,new JDBCCallBack<Book>() {
             
@@ -325,14 +326,14 @@ public class BookDao {
 
     }
 
-    public int getMyBookCount(int userId,String status) {
+    public int getMyBookCount(int userId,BookStatus status) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         int mybookCount = 0;
         try {
             conn = DBUtils.getConnection();
-            String countSQL = "SELECT count(*) AS mybookCount FROM book WHERE "+this.getWhereSQL(userId, status);
+            String countSQL = "SELECT count(*) AS mybookCount FROM book WHERE "+this.getWhereSQL(userId, status.getValue());
             stmt = (PreparedStatement) conn.prepareStatement(countSQL);
             rs = (ResultSet) stmt.executeQuery();
             if (rs.next()) {

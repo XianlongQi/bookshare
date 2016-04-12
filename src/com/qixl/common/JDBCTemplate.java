@@ -38,7 +38,7 @@ public class JDBCTemplate<T> {
         return data;
     }
     
-    /*
+    
     public T queryOne(String sql,JDBCCallBack<T> jdbcCallBack) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -61,12 +61,15 @@ public class JDBCTemplate<T> {
         
         return data;
     }
-    */
     
+    /*
     public T queryOne(String sql,JDBCCallBack<T> jdbcCallBack) {
         List<T> data = query(sql,jdbcCallBack);
+        if(data != null && data.isEmpty()){
+            return data.get(0);
+        }
         
-        return (T)data;
+        return null;
     }
-
+*/
 }

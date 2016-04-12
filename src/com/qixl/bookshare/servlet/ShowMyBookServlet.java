@@ -2,6 +2,8 @@ package com.qixl.bookshare.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.qixl.bookshare.Constants;
+import com.qixl.bookshare.dao.BookDao;
 import com.qixl.bookshare.model.Book;
+import com.qixl.bookshare.model.BookStatus;
 import com.qixl.bookshare.model.Pagenation;
 import com.qixl.bookshare.model.User;
 import com.qixl.bookshare.service.BookService;
@@ -49,10 +53,19 @@ public class ShowMyBookServlet extends HttpServlet {
         
         
 	    BookService bookService = new BookService();
-	   
-	    ArrayList<Book> books = null;
-//	    ArrayList<Book> books = bookService.query(user.getId(),pagenation);
 	    
+	    BookStatus statusEnum = null;
+	    try{
+	        statusEnum = BookStatus.valueOf(status);
+	    }catch(Exception ex){
+	        statusEnum = BookStatus.valueOf("alls");
+	    }
+	    
+	    
+	   
+	    ArrayList<Book> books = bookService.query(user.getId(), pagenation, statusEnum);
+//	    ArrayList<Book> books = bookService.query(user.getId(),pagenation);
+	    /*
 	    if(status.equals("all")){
 	        books = bookService.query(user.getId(),pagenation,status);
 	    }else if(status.equals("out")){
@@ -65,15 +78,30 @@ public class ShowMyBookServlet extends HttpServlet {
             status = "all";
             books = bookService.query(user.getId(), pagenation,status);
         }
-	    
+	    */
 	    request.setAttribute("status", status);
 	    
 	    request.setAttribute("books", books);
 	    request.setAttribute("pagenation", pagenation);
+	    /*
+	    List<String> statusList = new ArrayList<String>();
+	    statusList.add("all");
+	    statusList.add("out");
+	    statusList.add("in");
+	    statusList.add("borrow");
 	    
+	    for(String statusItem : statusList){
+	        int mybookCount = bookService.getMyBookCount(user.getId(), statusItem);
+	        request.setAttribute(statusItem+"Count", mybookCount);
+	    }
+	    */
+	    for(BookStatus enumStatus : BookStatus.values()){
+    	    int mybookCount = bookService.getMyBookCount(user.getId(), enumStatus);
+            request.setAttribute(enumStatus+"Count", mybookCount);
+	    }
+	    /*
 	    int mybookCount = bookService.getMyBookCount(user.getId(),status);
 	   
-	    
 	    int mybookOutCount = bookService.getMyBookOutCount(user.getId());
 	    
 	    int mybookInCount = bookService.getMyBookInCount(user.getId());
@@ -84,7 +112,7 @@ public class ShowMyBookServlet extends HttpServlet {
 	    request.setAttribute("mybookOutCount", mybookOutCount);
 	    request.setAttribute("mybookInCount", mybookInCount);
 	    request.setAttribute("mybookBorrowCount", mybookBorrowCount);
-	    
+	    */
 	    request.getRequestDispatcher("/WEB-INF/jsp/book/mybook.jsp").forward(request, response);
 	}
 

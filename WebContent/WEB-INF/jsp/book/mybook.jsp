@@ -117,10 +117,10 @@
             <div id="myBookTab">
                <ul>
                   <%String status = (String)request.getAttribute("status"); %>
-                   <li><a href="<%=request.getContextPath()%>/mybook.action?status=all">全部</a><span><%=request.getAttribute("mybookCount") %></span></li>
-                   <li><a href="<%=request.getContextPath()%>/mybook.action?status=out" >已借出</a><span><%=request.getAttribute("mybookOutCount") %></span></li>
-                   <li><a href="<%=request.getContextPath()%>/mybook.action?status=borrow" style="border-right: 1px solid #8EBACA;">未借出</a><span><%=request.getAttribute("mybookBorrowCount") %></span></li>
-                   <li><a href="<%=request.getContextPath()%>/mybook.action?status=in" >借入</a><span><%=request.getAttribute("mybookInCount") %></span></li>
+                   <li><a href="<%=request.getContextPath()%>/mybook.action?status=all">全部</a><span><%=request.getAttribute("allCount") %></span></li>
+                   <li><a href="<%=request.getContextPath()%>/mybook.action?status=out" >已借出</a><span><%=request.getAttribute("outCount") %></span></li>
+                   <li><a href="<%=request.getContextPath()%>/mybook.action?status=borrow" style="border-right: 1px solid #8EBACA;">未借出</a><span><%=request.getAttribute("borrowCount") %></span></li>
+                   <li><a href="<%=request.getContextPath()%>/mybook.action?status=in" >借入</a><span><%=request.getAttribute("inCount") %></span></li>
                    
                </ul>
                 <div> <a href="<%=request.getContextPath()%>/editbook.action">新增图书</a></div>

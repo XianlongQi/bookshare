@@ -12,6 +12,7 @@ import com.qixl.bookshare.dao.BookDao;
 import com.qixl.bookshare.exception.DBException;
 import com.qixl.bookshare.exception.ParameterException;
 import com.qixl.bookshare.model.Book;
+import com.qixl.bookshare.model.BookStatus;
 import com.qixl.bookshare.model.Pagenation;
 import com.qixl.bookshare.util.DBUtils;
 import com.qixl.bookshare.util.StringUtils;
@@ -42,7 +43,28 @@ public class BookService {
         return book.getId();
     }
     
-    public ArrayList<Book> query(int userId,Pagenation pagenation,String status) {
+    public ArrayList<Book> query(int userId,Pagenation pagenation,BookStatus status) {
+        /*
+        if(status == null){
+            status = "all";
+        }
+        
+        List<String> statusList = new ArrayList<String>();
+        statusList.add("all");
+        statusList.add("out");
+        statusList.add("in");
+        statusList.add("borrow");
+        boolean b = false;
+        for(String statusItem : statusList){
+            if(statusItem.equals(status)){
+                b = true;
+                break;
+            }
+        }
+        if(!b){
+            status = "all";
+        }
+        */
         ArrayList<Book> bookList = new ArrayList<Book>();
         BookDao bookDao  = new BookDao();
         bookList = bookDao.query(userId,pagenation,status);
@@ -92,7 +114,28 @@ public class BookService {
         return bookList;
     }
 
-    public int getMyBookCount (int userId,String status){
+    public int getMyBookCount (int userId,BookStatus status){
+        /*
+        if(status == null){
+            status = "all";
+        }
+        
+        List<String> statusList = new ArrayList<String>();
+        statusList.add("all");
+        statusList.add("out");
+        statusList.add("in");
+        statusList.add("borrow");
+        boolean b = false;
+        for(String statusItem : statusList){
+            if(statusItem.equals(status)){
+                b = true;
+                break;
+            }
+        }
+        if(!b){
+            status = "all";
+        }
+        */
         BookDao bookDao = new BookDao();
         return bookDao.getMyBookCount(userId,status);
     }

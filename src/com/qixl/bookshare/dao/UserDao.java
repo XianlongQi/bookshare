@@ -17,7 +17,7 @@ public class UserDao {
             return null;
         }
         JDBCTemplate<User> jdbcTemplate = new JDBCTemplate<User>();
-        return jdbcTemplate.queryOne("", new JDBCCallBack<User>() {
+        return jdbcTemplate.queryOne("SELECT * FROM user WHERE user_name = ?", new JDBCCallBack<User>() {
             
             @Override
             public void setParams(PreparedStatement pstmt) throws SQLException {
