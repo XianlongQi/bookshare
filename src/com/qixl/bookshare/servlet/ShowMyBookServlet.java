@@ -29,6 +29,7 @@ public class ShowMyBookServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //	    request.setCharacterEncoding("UTF-8");
+	    
 	    String currentPageStr = request.getParameter("currentPage");
 	    if(StringUtils.isEmpty(currentPageStr)){
 	        currentPageStr="1";

@@ -17,7 +17,7 @@
 <body onkeydown="keyLogin();">
     <%String tipMessage = (String)request.getAttribute(Constants.TIP_MESSAGE);
     String visibility = "hidden";
-    if(tipMessage != null){ 
+    if(tipMessage != null){
         visibility = "visible";
          
     } %>
@@ -33,7 +33,7 @@
        <div class="logo"></div>
        <div class="title">图书分享系统</div> 
 
-       <form action="login.action" method="POST" id="loginForm">
+       <form action="<%=request.getContextPath() %>/saveLogin.action" method="POST" id="loginForm">
             <div class="line">
                 <label>用户名</label>
                 <input type="text" name="userName" id="userName" value="qixl"/>

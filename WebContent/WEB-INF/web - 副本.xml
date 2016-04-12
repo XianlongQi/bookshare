@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>login</display-name>
+  <display-name>bookshare</display-name>
   <welcome-file-list>
-    <welcome-file>login.action</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <filter>
     <filter-name>Encoding</filter-name>
@@ -16,12 +16,6 @@
     <filter-name>Encoding</filter-name>
     <url-pattern>*.action</url-pattern>
   </filter-mapping>
-  
-  <error-page>
-    <error-code>404</error-code>
-    <location>/404.html</location>
-  </error-page>
-  <!-- 
   <filter>
     <display-name>SessionFilter</display-name>
     <filter-name>SessionFilter</filter-name>
@@ -35,9 +29,6 @@
     <filter-name>SessionFilter</filter-name>
     <url-pattern>*.action</url-pattern>
   </filter-mapping>
-   -->
-   
-   <!--
   <servlet>
     <description></description>
     <display-name>LoginServlet</display-name>
@@ -102,7 +93,6 @@
     <servlet-name>DeleteBook</servlet-name>
     <url-pattern>/deleteBook.action</url-pattern>
   </servlet-mapping>
- -->
   <servlet>
     <description></description>
     <display-name>DispatcherServlet</display-name>
