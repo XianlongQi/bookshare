@@ -24,6 +24,7 @@ public class DispatcherServlet extends HttpServlet {
         actionConfigs.put("deletebook.action", new ActionConfig("com.qixl.bookshare.Controller.BookController","delete"));
         actionConfigs.put("editbook.action", new ActionConfig("com.qixl.bookshare.Controller.BookController","edit"));
         actionConfigs.put("mybook.action", new ActionConfig("com.qixl.bookshare.Controller.BookController","mybook"));
+        actionConfigs.put("allbook.action", new ActionConfig("com.qixl.bookshare.Controller.BookController","allbook"));
         actionConfigs.put("login.action", new ActionConfig("com.qixl.bookshare.Controller.UserController","login"));
         actionConfigs.put("saveLogin.action", new ActionConfig("com.qixl.bookshare.Controller.UserController","saveLogin"));
         
