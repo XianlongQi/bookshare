@@ -30,9 +30,9 @@ public class UserController {
         System.out.println("get......");
         if(user != null){
             System.out.println("user:"+user);
-            modelAndView.setRediret(true);
-            modelAndView.setView(request.getContextPath()+"/mybook.action");
-//            response.sendRedirect(request.getContextPath()+"/mybook.action");
+            modelAndView.setRediret(true);                     //（1）
+            modelAndView.setView(request.getContextPath()+"/mybook.action");//（2）
+//            response.sendRedirect(request.getContextPath()+"/mybook.action"); //用（1）（2）替换掉本条语句，替代response
         }else{
             System.out.println("nouser");
             String go = request.getParameter("go");

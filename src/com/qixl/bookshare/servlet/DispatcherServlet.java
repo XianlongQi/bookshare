@@ -67,6 +67,7 @@ public class DispatcherServlet extends HttpServlet {
                 
             } catch (Exception e) {
                 e.printStackTrace();
+                response.sendError(500);
             }
 		}else{
 		    response.sendError(404);

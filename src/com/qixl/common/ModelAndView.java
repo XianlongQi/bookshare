@@ -1,5 +1,5 @@
 package com.qixl.common;
-
+//为了把response从userController中移出来
 public class ModelAndView {
     private String view;
     private boolean rediret = false;
